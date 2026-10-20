@@ -1,0 +1,62 @@
+---
+import Logo from "./Logo.astro";
+import { siteNav } from "../lib/nav";
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <section class="bg-forest text-white">
+    <div
+      class="site-wrap flex flex-col gap-8 py-16 sm:flex-row sm:items-center sm:justify-between sm:py-20"
+    >
+      <h2
+        class="max-w-[14ch] font-display text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-[-0.04em]"
+      >
+        Tell us what’s tangled.
+      </h2>
+      <a
+        href="/#contact"
+        class="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-lime text-forest no-underline transition-colors hover:bg-lime-bright sm:size-16"
+        aria-label="Start a conversation"
+      >
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path
+            d="M5 17 17 5M8 5h9v9"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-line-soft bg-paper">
+    <div
+      class="site-wrap flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between md:py-10"
+    >
+      <Logo />
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap items-center gap-6">
+          {
+            siteNav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-[15px] font-medium text-muted no-underline transition-colors hover:text-ink"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <p class="m-0 text-sm text-muted">
+        © {year} loopwork. All rights reserved.
+      </p>
+    </div>
+  </section>
+</footer>

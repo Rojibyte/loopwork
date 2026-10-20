@@ -1,0 +1,91 @@
+---
+import { siteNav } from "../lib/nav";
+---
+
+<div class="site-wrap flex h-[72px] items-center justify-between md:h-[84px]">
+  <slot />
+  <button
+    type="button"
+    class="group relative grid size-11 shrink-0 place-items-center rounded-[var(--radius-sm)] text-ink md:hidden"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    aria-label="Open menu"
+    data-mobile-nav-toggle
+  >
+    <span class="relative block h-3.5 w-[18px]" aria-hidden="true">
+      <span
+        class="absolute top-0 left-0 h-[1.75px] w-full origin-center rounded-full bg-current transition duration-200 ease-out group-aria-expanded:translate-y-[6.25px] group-aria-expanded:rotate-45"
+      ></span>
+      <span
+        class="absolute top-[6.25px] left-0 h-[1.75px] w-full rounded-full bg-current transition duration-200 ease-out group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0"
+      ></span>
+      <span
+        class="absolute bottom-0 left-0 h-[1.75px] w-full origin-center rounded-full bg-current transition duration-200 ease-out group-aria-expanded:-translate-y-[6.25px] group-aria-expanded:-rotate-45"
+      ></span>
+    </span>
+  </button>
+</div>
+
+<nav
+  id="mobile-menu"
+  class="grid grid-rows-[0fr] border-t border-transparent bg-paper/95 md:hidden motion-safe:transition-[grid-template-rows] motion-safe:duration-300 motion-safe:ease-out data-[open=true]:grid-rows-[1fr] data-[open=true]:border-line-soft"
+  aria-label="Mobile"
+  data-mobile-nav-panel
+  data-open="false"
+  inert
+>
+  <div class="overflow-hidden">
+    <ul class="site-wrap flex flex-col gap-1 py-3 pb-5">
+      {
+        siteNav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block rounded-[var(--radius)] px-1 py-3 font-display text-2xl font-semibold tracking-[-0.03em] text-ink no-underline transition-colors hover:text-forest"
+              data-mobile-nav-link
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  function setupMobileNav() {
+    const toggle = document.querySelector<HTMLButtonElement>("[data-mobile-nav-toggle]");
+    const panel = document.querySelector<HTMLElement>("[data-mobile-nav-panel]");
+    if (!toggle || !panel || toggle.dataset.ready === "true") return;
+
+    toggle.dataset.ready = "true";
+    const desktop = window.matchMedia("(min-width: 768px)");
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      panel.toggleAttribute("inert", !open);
+      panel.dataset.open = String(open);
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    panel.querySelectorAll("[data-mobile-nav-link]").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+
+    desktop.addEventListener("change", (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+
+  setupMobileNav();
+  document.addEventListener("astro:page-load", setupMobileNav);
+</script>
