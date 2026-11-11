@@ -1,0 +1,20 @@
+---
+import '../styles/global.css' // use your actual CSS filename
+interface Props {
+  title?: string
+}
+const {title = 'Loopwork'} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <!-- anything else currently in your index.astro head: fonts, favicon, meta description -->
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

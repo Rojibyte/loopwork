@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import {getCaseStudies} from '../../lib/sanity'
+
+export async function getStaticPaths() {
+  const cases = await getCaseStudies()
+  return cases.map((study) => ({
+    params: {slug: study.slug},
+    props: {study},
+  }))
+}
+
+const {study} = Astro.props
+---
+
+<Layout title={`${study.client} | Loopwork`}>
+  <main class="section">
+    <div class="shell">
+      <a href="/#work">← Back to selected work</a>
+      <div class="case__kicker">
+        <span>{study.client}</span>
+        <span>{study.industry}</span>
+        {study.isSample && <span class="case__sample">Sample project</span>}
+      </div>
+      <h1>{study.title}</h1>
+      <p>{study.summary}</p>
+      <div class="case__metric">
+        <span class="case__metric-value">{study.metricValue}</span>
+        <span class="case__metric-label">{study.metricLabel}</span>
+      </div>
+      <dl class="case__facts">
+        {study.facts.map((f) => (
+          <div><dt>{f.label}</dt><dd>{f.value}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </main>
+</Layout>

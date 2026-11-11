@@ -25,7 +25,7 @@ const cases = await getCaseStudies()
               <span>{c.industry}</span>
               {c.isSample && <span class="case__sample">Sample project</span>}
             </div>
-            <h3>{c.title}</h3>
+            <h3><a href={`/work/${c.slug}`}>{c.title}</a></h3>
             <p>{c.summary}</p>
             <div class="case__metric">
               <span class="case__metric-value">{c.metricValue}</span>
