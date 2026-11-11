@@ -27,3 +27,19 @@ export function getCaseStudies() {
     }
   `);
 }
+
+export interface Service {
+  title: string;
+  description: string;
+  deliverables: string[];
+  extraGroupTitle?: string;
+  extraGroupItems?: string[];
+}
+
+export function getServices() {
+  return sanity.fetch<Service[]>(`
+    *[_type == "service"] | order(order asc){
+      title, description, deliverables, extraGroupTitle, extraGroupItems
+    }
+  `);
+}

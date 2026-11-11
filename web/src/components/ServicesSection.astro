@@ -1,0 +1,47 @@
+---
+import {getServices} from '../lib/sanity'
+const services = await getServices()
+---
+
+<section class="section section--dark section--services" id="services" aria-labelledby="services-title">
+  <div class="shell">
+    <div class="section-head section-head--dark">
+      <div>
+        <p class="section-index">02 / Services</p>
+        <h2 id="services-title">Build the system. Then make it legible.</h2>
+      </div>
+      <p class="section-intro">
+        No mystery stack, no permanent dependency. We do the build, explain the
+        build, and leave your team with something they can operate.
+      </p>
+    </div>
+
+    <div class="services-list">
+      {services.map((s, i) => (
+        <article class="service">
+          <span class="service__num mono">{String(i + 1).padStart(2, '0')}</span>
+          <div class="service__body">
+            <h3>{s.title}</h3>
+            <p>{s.description}</p>
+            {s.extraGroupTitle && (
+              <div class="service__group">
+                <p class="service__group-title">{s.extraGroupTitle}</p>
+                <ul class="service__group-list">
+                  {s.extraGroupItems?.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+          <ul class="service__list">
+            {s.deliverables.map((d) => <li>{d}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="service-cta">
+      <p>Not sure what’s broken? Start with a lifecycle audit.</p>
+      <a class="btn btn--lime" href="#contact">Tell us what’s tangled</a>
+    </div>
+  </div>
+</section>
