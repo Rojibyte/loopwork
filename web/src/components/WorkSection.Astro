@@ -1,0 +1,44 @@
+---
+import {getCaseStudies} from '../lib/sanity'
+const cases = await getCaseStudies()
+---
+
+<section class="section section--work" id="work" aria-labelledby="work-title">
+  <div class="shell">
+    <div class="section-head">
+      <div>
+        <p class="section-index">01 / Selected work</p>
+        <h2 id="work-title">Built to be handed over.</h2>
+      </div>
+      <p class="section-intro">
+        Three systems, three different messes. Each one left with a manual,
+        a calendar, and someone on the client side who knows how it works.
+      </p>
+    </div>
+
+    <div class="work-grid">
+      {cases.map((c, i) => (
+        <article class:list={['case', {'case--feature': i === 0}]}>
+          <div class="case__body">
+            <div class="case__kicker">
+              <span>{c.client}</span>
+              <span>{c.industry}</span>
+              {c.isSample && <span class="case__sample">Sample project</span>}
+            </div>
+            <h3>{c.title}</h3>
+            <p>{c.summary}</p>
+            <div class="case__metric">
+              <span class="case__metric-value">{c.metricValue}</span>
+              <span class="case__metric-label">{c.metricLabel}</span>
+            </div>
+            <dl class="case__facts">
+              {c.facts.map((f) => (
+                <div><dt>{f.label}</dt><dd>{f.value}</dd></div>
+              ))}
+            </dl>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
