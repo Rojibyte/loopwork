@@ -4,7 +4,7 @@ export const sanity = createClient({
   projectId: import.meta.env.SANITY_PROJECT_ID,
   dataset: import.meta.env.SANITY_DATASET,
   apiVersion: "2024-01-01",
-  useCdn: true, // fine for published content at build time
+  useCdn: false, // fine for published content at build time
 });
 
 export interface CaseStudy {
