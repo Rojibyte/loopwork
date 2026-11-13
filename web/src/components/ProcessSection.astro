@@ -1,0 +1,37 @@
+---
+const steps = [
+  {title: 'Scope', body: 'We map the current state, the gaps, and the decisions. You get a clear build plan before anyone opens a canvas.'},
+  {title: 'Build', body: 'Design, copy, setup, QA. We work in your tools, not beside them, so nothing gets lost in translation.'},
+  {title: 'Handover', body: 'Docs, training, and a live walkthrough. Your team leaves knowing where everything lives and why.'},
+  {title: 'Iterate', body: 'A month later, we check what’s working. Then we fix the system, not just the email.'},
+]
+---
+
+<section class="section section--process" id="process" aria-labelledby="process-title">
+  <div class="shell">
+    <div class="section-head">
+      <div>
+        <p class="section-index">03 / The loop</p>
+        <h2 id="process-title">A loop, not a handoff-and-hope.</h2>
+      </div>
+      <p class="section-intro">
+        Good work should make the next round easier. Our process is designed to
+        leave you with more clarity than we found, not more dependencies.
+      </p>
+    </div>
+
+    <ol class="loop-steps">
+      {steps.map((s, i) => (
+        <li class="loop-step">
+          <span class="loop-step__num mono">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="process-statement">
+      <p>A clean handover is the deliverable. <em>Everything else is how we get there.</em></p>
+    </div>
+  </div>
+</section>
