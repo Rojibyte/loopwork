@@ -1,5 +1,7 @@
 # Loopwork
 
+![E2E tests](https://github.com/Rojibyte/loopwork/actions/workflows/e2e.yml/badge.svg)
+
 A demo marketing site for a fictional lifecycle email and CMS agency, built with **Astro** and **Sanity**. Content is edited in a headless CMS, the site is generated statically, and publishing in the Studio automatically rebuilds the live site.
 
 **Live site:** https://loopwork-smoky.vercel.app/
