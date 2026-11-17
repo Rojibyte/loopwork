@@ -71,6 +71,13 @@ npx sanity dataset import caseStudies.ndjson production --replace
 npx sanity dataset import services.ndjson production --replace
 ```
 
+## Tests
+
+Playwright smoke tests cover the home page, the Sanity-driven sections, case study navigation, and the contact form validation.
+
+    cd web
+    npm run test:e2e
+
 ## Things I ran into
 
 - **Nested Git repos.** Both scaffolders had initialized their own `.git`, so the root repo would have pushed the folders as empty submodules. I removed them and used one repo.
@@ -84,7 +91,6 @@ npx sanity dataset import services.ndjson production --replace
 - Decorative visuals on the case study cards
 - A working form backend (the form is a front-end demo)
 - Rich body content and images for case study pages, which currently show the same fields as the cards
-- Automated tests
 
 ## How I worked
 
