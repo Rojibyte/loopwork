@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("home page", () => {
+  test("home page has exactly one h1", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  });
+
   test("loads with the main sections", async ({ page }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Loopwork/);

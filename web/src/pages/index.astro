@@ -1,14 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
 import WorkSection from '../components/WorkSection.astro'
 import ServicesSection from '../components/ServicesSection.astro'
 import ProcessSection from '../components/ProcessSection.astro'
 import ContactSection from '../components/ContactSection.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Loopwork',
+  url: Astro.site?.href,
+}
 ---
 
-<Layout title="Loopwork | Lifecycle email and websites">
-		<WorkSection />
-		<ServicesSection />
-		<ProcessSection />
-		<ContactSection />
+<Layout title="Loopwork | Lifecycle email and websites"
+  description="Loopwork is a demo agency site showing lifecycle email and CMS website work, built with Astro and Sanity."
+  jsonLd={jsonLd}
+	>
+		<main id="main" tabindex="-1">
+    <Hero />
+    <WorkSection />
+    <ServicesSection />
+    <ProcessSection />
+    <ContactSection />
+  </main>
 </Layout>

@@ -11,9 +11,17 @@ export async function getStaticPaths() {
 }
 
 const {study} = Astro.props
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: study.title,
+  description: study.summary,
+  url: new URL(`/work/${study.slug}`, Astro.site).href,
+}
 ---
 
-<Layout title={`${study.client} | Loopwork`}>
+<Layout title={`${study.client} | Loopwork`} description={study.summary} jsonLd={jsonLd}>
   <main class="section">
     <div class="shell">
       <a href="/#work">← Back to selected work</a>
