@@ -100,10 +100,19 @@ The visual design started as a prototype generated with an Open Design (Deepseek
 
 ## Lighthouse Scores
 
-- 94 Performance
-- 98 Accessibility
-- 96 Best Practices
-- 90 SEO
+Desktop
+
+- 100 Performance
+- 100 Accessibility
+- 100 Best Practices
+- 100 SEO
+
+Mobile
+
+- 100 Performance
+- 100 Accessibility
+- 100 Best Practices
+- 100 SEO
 
 ## Other work
 
